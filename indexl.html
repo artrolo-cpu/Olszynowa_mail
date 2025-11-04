@@ -1,60 +1,25 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zakrzewo Olszynowa – Równanie drogi</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
-      text-align: center;
-      padding-top: 80px;
-    }
-    h1 {
-      color: #003366;
-      margin-bottom: 20px;
-    }
-    p {
-      color: #333;
-      font-size: 18px;
-      margin-bottom: 40px;
-    }
-    #mailButton {
-      background-color: #0078D7;
-      color: white;
-      border: none;
-      border-radius: 12px;
-      padding: 15px 40px;
-      font-size: 20px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    #mailButton:hover {
-      background-color: #005a9e;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <title>Automatyczny e-mail do Urzędu Gminy Dopiewo</title>
+  <script>
+    window.onload = function() {
+      const email = "urzad_gminy@dopiewo.pl";
+      const today = new Date().toLocaleDateString('pl-PL');
+      const subject = `Zakrzewo Olszynowa – równanie drogi [${today}]`;
+      const body = `Szanowni Państwo,%0D%0A%0D%0Azwracam się z prośbą o podjęcie działań związanych ze złym stanem technicznym drogi zlokalizowanej przy ul. Olszynowej w Zakrzewie. W chwili obecnej droga posiada liczne uszkodzenia i nierówności, które uniemożliwiają bezpieczny przejazd, nawet z bardzo małą szybkością.%0D%0A%0D%0AZ poważaniem,%0D%0AArtur Wiśniewski`;
+      
+      const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${body}`;
+      window.location.href = mailtoLink;
+    };
+  </script>
 </head>
 <body>
-  <h1>Zgłoszenie – Zakrzewo, ul. Olszynowa</h1>
-  <p>Kliknij poniższy przycisk, aby otworzyć gotowy e-mail do Urzędu Gminy Dopiewo.</p>
-  <button id="mailButton">✉️ Wyślij zgłoszenie e-mailem</button>
-
+  <p>Otwieranie wiadomości e-mail... Jeśli nic się nie dzieje, <a id="link" href="#">kliknij tutaj</a>.</p>
   <script>
-    // Automatyczna data w temacie
-    const today = new Date();
-    const formattedDate = today.toLocaleDateString("pl-PL");
-
-    // Dane e-maila
-    const recipient = "urzad_gminy@dopiewo.pl";
-    const subject = `Zakrzewo Olszynowa – równanie drogi ${formattedDate}`;
-    const body = `Szanowni Państwo,%0D%0A%0D%0Azwracam się z prośbą o podjęcie działań związanych ze złym stanem technicznym drogi zlokalizowanej przy ul. Olszynowej w Zakrzewie. W chwili obecnej droga posiada liczne uszkodzenia i nierówności, które uniemożliwiają bezpieczny przejazd, nawet z bardzo małą szybkością.%0D%0A%0D%0AZ poważaniem,%0D%0AArtur Wiśniewski`;
-
-    // Obsługa kliknięcia
-    document.getElementById("mailButton").addEventListener("click", () => {
-      const mailtoLink = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${body}`;
-      window.location.href = mailtoLink;
-    });
+    // dodanie linku zapasowego
+    document.getElementById('link').href = `mailto:urzad_gminy@dopiewo.pl`;
   </script>
 </body>
 </html>
